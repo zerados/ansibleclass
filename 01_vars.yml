@@ -24,3 +24,8 @@
   - name: Show Status
     debug:
       var: httpd_status
+
+  - name: Is httpd running
+    debug:
+      msg: httpd is running
+    when: httpd_status.state == "started"
