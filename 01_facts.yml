@@ -5,3 +5,11 @@
   - name: Debug Facts
     ansible.builtin.debug:
       msg: "{{ ansible_facts }}"
+
+  - name: Debug Facts ipv4 - List
+    ansible.builtin.debug:
+      msg: "{{ ansible_facts['all_ipv4_addresses'][0] }}"
+
+  - name: Debug Facts SeLinux Status - Dictionary
+    ansible.builtin.debug:
+      msg: "{{ ansible_facts['selinux']['status'] }}"
