@@ -1,0 +1,12 @@
+---
+- hosts: linuxservers
+  become: yes
+
+  vars:
+      package: httpd
+
+  tasks:
+  - name: Install Packages
+    ansible.builtin.package:
+      name: "{{ package }}"
+      state: latest
