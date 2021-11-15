@@ -1,0 +1,20 @@
+---
+- hosts: linuxservers
+  become: yes
+
+  tasks:
+  - name: Ensure group developers exists
+    group:
+      name: Developers
+      state: present
+
+  - name: Create Users
+    ansible.builtin.user:
+      name: "{{ item }}"
+      group: Developers
+    loop:
+      - homer
+      - bart
+      - lisa
+      - ned
+      - moe
