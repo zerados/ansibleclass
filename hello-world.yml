@@ -1,0 +1,6 @@
+---
+- hosts: localhost
+  tasks:
+  - name: HELLO WORLD
+    deansible.builtin.debugbug:
+      msg: "Hello world"
