@@ -1,0 +1,36 @@
+---
+- hosts: tag_solution_webserver_msj
+  become: yes
+  tasks:
+  - name: Install Apache
+    dnf:
+      name: httpd
+      state: latest
+
+  - name: Enable Apache
+    systemd:
+      name: httpd
+      enabled: yes
+      state: started
+
+  - name: Allow http in firewall
+    firewalld:
+      service: http
+      permanent: true
+      state: enabled
+      immediate: yes
+    notify:
+      - reload firewall
+
+  - name: Add index.html
+    template:
+      src: index.html.j2
+      dest: /var/www/html/index.html
+      owner: root
+      group: root
+
+  handlers:
+  - name: reload firewall
+    service:
+      name: firewalld
+      state: reloaded
